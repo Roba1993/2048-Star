@@ -6,9 +6,11 @@
  */
 package de.dhbw.star.gui;
 
+import de.dhbw.star.game.CoreGame;
 import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,7 +44,17 @@ public class KeyboardDispatcher implements KeyEventDispatcher {
             }
 
             gameWindow.updateWinow();
-            System.out.println(gameWindow.getCoreGame().toString());
+
+            //check the game status
+            if (gameWindow.getCoreGame().getGameStatus() == CoreGame.LOST) {
+                JOptionPane.showMessageDialog(null, "Lost", "You lost this game", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
+            }
+            if (gameWindow.getCoreGame().getGameStatus() == CoreGame.WON) {
+                JOptionPane.showMessageDialog(null, "Win", "You won this game", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
+            }
+            System.out.println(gameWindow.getCoreGame().getGameStatus());
         }
         return false;
     }

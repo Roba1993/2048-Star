@@ -14,8 +14,13 @@ import java.util.ArrayList;
  */
 public class CoreGame {
 
+    public static final int RUN = 0;
+    public static final int WON = 1;
+    public static final int LOST = 2;
+
     private final int gameSize = 4;
     private final ContentBox[][] gameArea = new ContentBox[gameSize][gameSize];
+    private int gameStatus = RUN;
 
     //Public Area
     /**
@@ -50,7 +55,10 @@ public class CoreGame {
         //only add a new value when there was a moe or change
         if (!sameAsGameArea(map)) {
             getRandomFreeBox().setValue(getRandomNewValue());
+        } else if (getRandomFreeBox() == null) {
+            gameStatus = LOST;
         }
+        checkIfWon();
     }
 
     /**
@@ -69,7 +77,10 @@ public class CoreGame {
         //only add a new value when there was a moe or change
         if (!sameAsGameArea(map)) {
             getRandomFreeBox().setValue(getRandomNewValue());
+        } else if (getRandomFreeBox() == null) {
+            gameStatus = LOST;
         }
+        checkIfWon();
     }
 
     /**
@@ -88,7 +99,10 @@ public class CoreGame {
         //only add a new value when there was a moe or change
         if (!sameAsGameArea(map)) {
             getRandomFreeBox().setValue(getRandomNewValue());
+        } else if (getRandomFreeBox() == null) {
+            gameStatus = LOST;
         }
+        checkIfWon();
     }
 
     /**
@@ -107,7 +121,10 @@ public class CoreGame {
         //only add a new value when there was a move or change
         if (!sameAsGameArea(map)) {
             getRandomFreeBox().setValue(getRandomNewValue());
+        } else if (getRandomFreeBox() == null) {
+            gameStatus = LOST;
         }
+        checkIfWon();
     }
 
     /**
@@ -195,6 +212,10 @@ public class CoreGame {
             }
         }
 
+        if (free.isEmpty()) {
+            return null;
+        }
+
         //choose one random box from the free list
         int randNumber = (int) (free.size() * Math.random());
 
@@ -235,9 +256,25 @@ public class CoreGame {
         return true;
     }
 
+    private void checkIfWon() {
+        if (gameStatus == RUN) {
+            int map[][] = getValues();
+            for (int x = 0; x < gameSize; x++) {
+                for (int y = 0; y < gameSize; y++) {
+                    if (map[x][y] == 2048) {
+                        gameStatus = WON;
+                    }
+                }
+            }
+        }
+    }
+
     //Getter & Setter
     public int getGameSize() {
         return gameSize;
     }
 
+    public int getGameStatus() {
+        return gameStatus;
+    }
 }

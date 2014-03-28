@@ -56,10 +56,6 @@ public class GameWindow extends JFrame {
                 int yDisplay = coreGame.getGameSize() - 1 - y;
                 String text = Integer.toString(map[x][y]);
                 contentBoxPanes[x][yDisplay].setText(text);
-                
-                if("2048".equals(text)) {
-                    JOptionPane.showMessageDialog(null, "Win", "You won this game", JOptionPane.INFORMATION_MESSAGE);
-                }
             }
         }
 
