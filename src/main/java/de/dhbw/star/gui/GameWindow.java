@@ -9,7 +9,6 @@ import de.dhbw.star.game.CoreGame;
 import java.awt.GridLayout;
 import java.awt.KeyboardFocusManager;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *

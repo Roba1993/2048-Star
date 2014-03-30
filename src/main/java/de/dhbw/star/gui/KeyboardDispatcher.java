@@ -9,7 +9,6 @@ package de.dhbw.star.gui;
 import de.dhbw.star.game.CoreGame;
 import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
