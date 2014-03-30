@@ -43,7 +43,7 @@ public class CoreGame {
      * This function moves the values up
      */
     public void moveUp() {
-        clearMergedAttributes();
+        beforeMove();
         int map[][] = getValues();
 
         for (int x = 0; x < gameSize; x++) {
@@ -52,20 +52,14 @@ public class CoreGame {
             }
         }
 
-        //only add a new value when there was a moe or change
-        if (!sameAsGameArea(map)) {
-            getRandomFreeBox().setValue(getRandomNewValue());
-        } else if (getRandomFreeBox() == null) {
-            gameStatus = LOST;
-        }
-        checkIfWon();
+        afterMove(map);
     }
 
     /**
      * This function moves the values down
      */
     public void moveDown() {
-        clearMergedAttributes();
+        beforeMove();
         int map[][] = getValues();
 
         for (int x = 0; x < gameSize; x++) {
@@ -74,20 +68,14 @@ public class CoreGame {
             }
         }
 
-        //only add a new value when there was a moe or change
-        if (!sameAsGameArea(map)) {
-            getRandomFreeBox().setValue(getRandomNewValue());
-        } else if (getRandomFreeBox() == null) {
-            gameStatus = LOST;
-        }
-        checkIfWon();
+        afterMove(map);
     }
 
     /**
      * This function moves the values left
      */
     public void moveLeft() {
-        clearMergedAttributes();
+        beforeMove();
         int map[][] = getValues();
 
         for (int y = 0; y < gameSize; y++) {
@@ -96,20 +84,14 @@ public class CoreGame {
             }
         }
 
-        //only add a new value when there was a moe or change
-        if (!sameAsGameArea(map)) {
-            getRandomFreeBox().setValue(getRandomNewValue());
-        } else if (getRandomFreeBox() == null) {
-            gameStatus = LOST;
-        }
-        checkIfWon();
+        afterMove(map);
     }
 
     /**
      * This fucntion moves the values right
      */
     public void moveRight() {
-        clearMergedAttributes();
+        beforeMove();
         int map[][] = getValues();
 
         for (int y = 0; y < gameSize; y++) {
@@ -118,13 +100,7 @@ public class CoreGame {
             }
         }
 
-        //only add a new value when there was a move or change
-        if (!sameAsGameArea(map)) {
-            getRandomFreeBox().setValue(getRandomNewValue());
-        } else if (getRandomFreeBox() == null) {
-            gameStatus = LOST;
-        }
-        checkIfWon();
+        afterMove(map);
     }
 
     /**
@@ -183,6 +159,20 @@ public class CoreGame {
         return map;
     }
 
+    public void restartGame() {
+        for (int x = 0; x < gameSize; x++) {
+            for (int y = 0; y < gameSize; y++) {
+                gameArea[x][y].setValue(0);
+                gameArea[x][y].setMerged(false);
+            }
+        }
+
+        //set two start values
+        getRandomFreeBox().setValue(getRandomNewValue());
+        getRandomFreeBox().setValue(getRandomNewValue());
+        gameStatus = RUN;
+    }
+
     //Protected Area
     protected ContentBox getContentBox(int xpos, int ypos) {
         if (xpos < 0 || ypos < 0 || xpos >= gameSize || ypos >= gameSize) {
@@ -193,6 +183,20 @@ public class CoreGame {
     }
 
     //Private Area
+    private void beforeMove() {
+        clearMergedAttributes();
+    }
+
+    private void afterMove(int map[][]) {
+        //only add a new value when there was a moe or change
+        if (!sameAsGameArea(map)) {
+            getRandomFreeBox().setValue(getRandomNewValue());
+        } else if (getRandomFreeBox() == null) {
+            gameStatus = LOST;
+        }
+        checkIfWon();
+    }
+
     /**
      * This function returns a ContentBox from the game with the value 0 - the
      * box is choosen random

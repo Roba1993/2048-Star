@@ -35,7 +35,6 @@ public class GameWindow extends JFrame {
             for (int x = 0; x < coreGame.getGameSize(); x++) {
                 contentBoxPanes[x][y] = new ContentBoxPane();
                 add(contentBoxPanes[x][y], y, x);
-                System.out.println("x: " + x + " y: " + y);
             }
         }
 

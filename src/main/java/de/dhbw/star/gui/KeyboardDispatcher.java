@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 public class KeyboardDispatcher implements KeyEventDispatcher {
 
     private GameWindow gameWindow;
+    private boolean gameRun = true;
 
     public KeyboardDispatcher(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
@@ -26,7 +27,7 @@ public class KeyboardDispatcher implements KeyEventDispatcher {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
-        if (e.getID() == KeyEvent.KEY_RELEASED) {
+        if (e.getID() == KeyEvent.KEY_RELEASED && gameRun) {
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 gameWindow.getCoreGame().moveDown();
             }
@@ -47,14 +48,19 @@ public class KeyboardDispatcher implements KeyEventDispatcher {
 
             //check the game status
             if (gameWindow.getCoreGame().getGameStatus() == CoreGame.LOST) {
+                gameRun = false;
                 JOptionPane.showMessageDialog(null, "Lost", "You lost this game", JOptionPane.INFORMATION_MESSAGE);
-                System.exit(0);
+                gameWindow.getCoreGame().restartGame();
+                gameRun = true;
+                gameWindow.updateWinow();
             }
             if (gameWindow.getCoreGame().getGameStatus() == CoreGame.WON) {
+                gameRun = false;
                 JOptionPane.showMessageDialog(null, "Win", "You won this game", JOptionPane.INFORMATION_MESSAGE);
-                System.exit(0);
+                gameWindow.getCoreGame().restartGame();
+                gameRun = true;
+                gameWindow.updateWinow();
             }
-            System.out.println(gameWindow.getCoreGame().getGameStatus());
         }
         return false;
     }
