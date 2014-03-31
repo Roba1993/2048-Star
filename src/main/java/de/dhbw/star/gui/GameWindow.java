@@ -6,6 +6,7 @@
 package de.dhbw.star.gui;
 
 import de.dhbw.star.game.CoreGame;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.KeyboardFocusManager;
 import javax.swing.JFrame;
@@ -27,6 +28,7 @@ public class GameWindow extends JFrame {
         setLayout(new GridLayout(coreGame.getGameSize(), coreGame.getGameSize()));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 400);
+        setBackground(Color.decode("#bbada0"));
 
         //generate the panes
         contentBoxPanes = new ContentBoxPane[coreGame.getGameSize()][coreGame.getGameSize()];

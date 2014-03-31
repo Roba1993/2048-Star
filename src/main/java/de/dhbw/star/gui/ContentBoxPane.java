@@ -22,7 +22,8 @@ public class ContentBoxPane extends JPanel {
 
     public ContentBoxPane() {
         setLayout(new BorderLayout());
-        setBorder(new LineBorder(Color.black, 2));
+        setBackground(Color.decode("#bbada0"));
+        setBorder(new LineBorder(Color.decode("#bbada0"), 3));
 
         value = new JLabel("", JLabel.CENTER);
         value.setVisible(true);
@@ -48,25 +49,40 @@ public class ContentBoxPane extends JPanel {
         //color the background
         switch (text) {
             case "2":
-                setBackground(Color.lightGray);
+                setBackground(Color.decode("#eee4da"));
                 break;
             case "4":
-                setBackground(Color.yellow);
+                setBackground(Color.decode("#ede0c8"));
                 break;
             case "8":
-                setBackground(Color.cyan);
+                setBackground(Color.decode("#f2b179"));
                 break;
             case "16":
-                setBackground(Color.green);
+                setBackground(Color.decode("#f59563"));
                 break;
             case "32":
-                setBackground(Color.magenta);
+                setBackground(Color.decode("#f67c5f"));
                 break;
             case "64":
-                setBackground(Color.red);
+                setBackground(Color.decode("#f65e3b"));
+                break;
+            case "128":
+                setBackground(Color.decode("#edcf72"));
+                break;
+            case "256":
+                setBackground(Color.decode("#edcc61"));
+                break;
+            case "512":
+                setBackground(Color.decode("#edc850"));
+                break;
+            case "1024":
+                setBackground(Color.decode("#edc53f"));
+                break;
+            case "2048":
+                setBackground(Color.decode("#edc22e"));
                 break;
             default:
-                setBackground(Color.white);
+                setBackground(Color.decode("#FFFCF9"));
                 break;
         }
 

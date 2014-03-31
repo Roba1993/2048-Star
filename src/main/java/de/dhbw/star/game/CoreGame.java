@@ -19,6 +19,7 @@ public class CoreGame {
     public static final int LOST = 2;
 
     private final int gameSize = 4;
+    private final double tileValue4Random = 0.1;
     private final ContentBox[][] gameArea = new ContentBox[gameSize][gameSize];
     private int gameStatus = RUN;
 
@@ -228,8 +229,7 @@ public class CoreGame {
     }
 
     private int getRandomNewValue() {
-        int randomNumber = (int) (Math.random() * 3);
-        if (randomNumber == 0) {
+        if (Math.random() <= tileValue4Random) {
             return 4;
         } else {
             return 2;
