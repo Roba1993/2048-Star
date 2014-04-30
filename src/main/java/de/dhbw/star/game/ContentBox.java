@@ -12,22 +12,26 @@ package de.dhbw.star.game;
  */
 public class ContentBox {
 
-    protected static final int UP = 0;
-    protected static final int DOWN = 1;
-    protected static final int RIGHT = 2;
-    protected static final int LEFT = 3;
 
-    private final CoreGame coreGame;
+
+    private final GameMap gameMap;
     private int value = 0;
     private boolean merged = false;
     private int xpos;
     private int ypos;
 
     //Public Area
-    public ContentBox(CoreGame coreGame, int xpos, int ypos) {
-        this.coreGame = coreGame;
+    public ContentBox(GameMap gameMap, int xpos, int ypos) {
+        this.gameMap = gameMap;
         this.xpos = xpos;
         this.ypos = ypos;
+    }
+
+    public ContentBox(GameMap gameMap, int xpos, int ypos, int value) {
+        this.gameMap = gameMap;
+        this.xpos = xpos;
+        this.ypos = ypos;
+        this.value = value;
     }
 
     //protected area
@@ -40,17 +44,17 @@ public class ContentBox {
         ContentBox nextBox;
 
         switch (direction) {
-            case UP:
-                nextBox = coreGame.getContentBox(xpos, ypos - 1);
+            case GameMap.UP:
+                nextBox = gameMap.getContentBox(xpos, ypos - 1);
                 break;
-            case DOWN:
-                nextBox = coreGame.getContentBox(xpos, ypos + 1);
+            case GameMap.DOWN:
+                nextBox = gameMap.getContentBox(xpos, ypos + 1);
                 break;
-            case LEFT:
-                nextBox = coreGame.getContentBox(xpos - 1, ypos);
+            case GameMap.LEFT:
+                nextBox = gameMap.getContentBox(xpos - 1, ypos);
                 break;
-            case RIGHT:
-                nextBox = coreGame.getContentBox(xpos + 1, ypos);
+            case GameMap.RIGHT:
+                nextBox = gameMap.getContentBox(xpos + 1, ypos);
                 break;
             default:
                 return;
