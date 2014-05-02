@@ -34,6 +34,8 @@ public class GameMap {
      * @param direction
      */
     public void gameMove(int direction) {
+        clearMergedAttributes();
+        
         switch (direction) {
             //Move all boxes up
             case GameMap.UP:
@@ -190,10 +192,33 @@ public class GameMap {
 
         return true;
     }
+    
+    public static String intToDirection(int dir) {
+        switch (dir) {
+            case GameMap.UP:
+                return "Up";
+            case GameMap.DOWN:
+                return "Down";
+            case GameMap.LEFT:
+                return "Left";
+            case GameMap.RIGHT:
+                return "Right";
+            default:
+                return Integer.toString(dir);
+        }
+    }
 
     //Getter & Setter
     public int getGameSize() {
         return gameSize;
     }
 
+    //Private Section
+     private void clearMergedAttributes() {
+        for (int x = 0; x < getGameSize(); x++) {
+            for (int y = 0; y < getGameSize(); y++) {
+                getContentBox(x, y).setMerged(false);
+            }
+        }
+    }
 }

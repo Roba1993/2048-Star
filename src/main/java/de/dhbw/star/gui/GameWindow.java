@@ -5,7 +5,10 @@
  */
 package de.dhbw.star.gui;
 
+import de.dhbw.star.ai.AI;
+import de.dhbw.star.ai.AIStep;
 import de.dhbw.star.game.CoreGame;
+import de.dhbw.star.game.GameMap;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.KeyboardFocusManager;
@@ -19,10 +22,12 @@ public class GameWindow extends JFrame {
 
     private final CoreGame coreGame;
     private final ContentBoxPane[][] contentBoxPanes;
+    private final AI ai;
 
-    public GameWindow(CoreGame coreGame) {
+    public GameWindow(CoreGame coreGame, AI ai) {
         super("2048 Star");
         this.coreGame = coreGame;
+        this.ai = ai;
 
         //window options
         setLayout(new GridLayout(coreGame.getGameSize(), coreGame.getGameSize()));
@@ -67,4 +72,7 @@ public class GameWindow extends JFrame {
         return coreGame;
     }
 
+    public AI getAI() {
+        return ai;
+    }
 }

@@ -43,54 +43,15 @@ public class CoreGame {
         this.gameMap = new GameMap(gameMap);
     }
 
-    /**
-     * This function moves the values up
-     */
-    public void moveUp() {
-        beforeMove();
+    public void move(int direction) {
         int map[][] = getValues();
 
-        gameMap.gameMove(GameMap.UP);
+        gameMap.gameMove(direction);
 
         afterMove(map);
     }
 
-    /**
-     * This function moves the values down
-     */
-    public void moveDown() {
-        beforeMove();
-        int map[][] = getValues();
-
-        gameMap.gameMove(GameMap.DOWN);
-
-        afterMove(map);
-    }
-
-    /**
-     * This function moves the values left
-     */
-    public void moveLeft() {
-        beforeMove();
-        int map[][] = getValues();
-
-        gameMap.gameMove(GameMap.LEFT);
-
-        afterMove(map);
-    }
-
-    /**
-     * This fucntion moves the values right
-     */
-    public void moveRight() {
-        beforeMove();
-        int map[][] = getValues();
-
-        gameMap.gameMove(GameMap.RIGHT);
-
-        afterMove(map);
-    }
-
+ 
     /**
      * This fucntion returns the map with the actual values as String
      *
@@ -120,10 +81,6 @@ public class CoreGame {
     }
 
     //Private Area
-    private void beforeMove() {
-        clearMergedAttributes();
-    }
-
     private void afterMove(int map[][]) {
         ContentBox cbox = getRandomFreeBox();
 
@@ -180,14 +137,6 @@ public class CoreGame {
             return 4;
         } else {
             return 2;
-        }
-    }
-
-    private void clearMergedAttributes() {
-        for (int x = 0; x < gameMap.getGameSize(); x++) {
-            for (int y = 0; y < gameMap.getGameSize(); y++) {
-                gameMap.getContentBox(x, y).setMerged(false);
-            }
         }
     }
 
