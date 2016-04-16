@@ -21,6 +21,7 @@ public class Main {
         CoreGame game = new CoreGame();
         AI ai = new AI(game);
         
+        // start game window
         GameWindow gameWindow = new GameWindow(game, ai);
     }
 }
